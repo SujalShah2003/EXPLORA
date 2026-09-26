@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MasterLayout from '@/layouts/MasterLayout';
 import HomePage from '@/pages/home/HomePage';
+import ProductsPage from '@/pages/products/ProductsPage';
 
 export const routes = createBrowserRouter(
   [
@@ -10,6 +11,10 @@ export const routes = createBrowserRouter(
         {
           index: true,
           Component: HomePage
+        },
+        {
+          path: 'products',
+          Component: ProductsPage
         },
         {
           path: '*',

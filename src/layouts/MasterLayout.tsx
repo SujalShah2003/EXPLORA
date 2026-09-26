@@ -9,6 +9,7 @@ import MobileHeader from '@/components/header/MobileHeader';
 import Footer from '@/components/footer/Footer';
 import ToggleTheme from '@/components/toggle-theme/ToggleTheme';
 import ActionButtons from '@/components/header/ActionButtons';
+import CartButton from '@/components/header/CartButton';
 import { CONTENT } from '@/constants';
 
 const MasterLayout = () => {
@@ -32,19 +33,24 @@ const MasterLayout = () => {
         >
           <Container size="xl" h="100%">
             <Group h="100%" justify="space-between" wrap="nowrap">
-              <Logo />
-              <WebHeader />
-              <Group gap="xs" visibleFrom="md" wrap="nowrap">
-                <ActionButtons />
-                <ToggleTheme />
+              <Group flex={1}>
+                <Logo />
               </Group>
-              <Burger
-                opened={opened}
-                onClick={toggle}
-                hiddenFrom="md"
-                size="sm"
-                aria-label={CONTENT.header.toggleNavigationAriaLabel}
-              />
+              <WebHeader />
+              <Group flex={1} justify="flex-end" gap="xs" wrap="nowrap">
+                <Group gap="xs" visibleFrom="md" wrap="nowrap">
+                  <ActionButtons />
+                  <ToggleTheme />
+                </Group>
+                <CartButton />
+                <Burger
+                  opened={opened}
+                  onClick={toggle}
+                  hiddenFrom="md"
+                  size="sm"
+                  aria-label={CONTENT.header.toggleNavigationAriaLabel}
+                />
+              </Group>
             </Group>
           </Container>
         </AppShell.Header>

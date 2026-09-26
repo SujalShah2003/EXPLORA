@@ -17,7 +17,12 @@ const Categories = () => {
   const categories = data ?? [];
 
   return (
-    <Box component="section" mt={64}>
+    <Box
+      component="section"
+      id="categories"
+      mt={64}
+      style={{ scrollMarginTop: 100 }}
+    >
       <SectionHeader
         eyebrow={copy.eyebrow}
         title={copy.title}

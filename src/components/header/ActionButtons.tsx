@@ -2,7 +2,6 @@ import { Button, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { FiCompass } from 'react-icons/fi';
 import { CONTENT } from '@/constants';
-import styles from './WebHeader.module.css';
 
 const { exploreProducts } = CONTENT.header;
 

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Box, Button, SimpleGrid, Stack, Text } from '@mantine/core';
-import { FiChevronDown } from 'react-icons/fi';
 import dayjs from 'dayjs';
 import SectionHeader from '@/common/SectionHeader';
 import SectionError from '@/common/SectionError';
@@ -31,7 +30,12 @@ const LatestProducts = () => {
   const handleLoadMore = () => setLimit(current => current + copy.pageSize);
 
   return (
-    <Box component="section" mt={64}>
+    <Box
+      component="section"
+      id="latest-products"
+      mt={64}
+      style={{ scrollMarginTop: 100 }}
+    >
       <SectionHeader
         eyebrow={copy.eyebrow}
         title={copy.title}

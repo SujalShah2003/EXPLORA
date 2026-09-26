@@ -37,3 +37,6 @@ export const { ADD_TO_CART } = cartSlice.actions;
 // `cart` can be missing right after rehydrating state persisted before the cart existed (hardSet).
 export const GET_CART_QUANTITY = (id: number) => (state: RootState) =>
   state.app.cart?.items.find(item => item.id === id)?.quantity ?? 0;
+
+export const GET_CART_COUNT = (state: RootState) =>
+  state.app.cart?.items.reduce((total, item) => total + item.quantity, 0) ?? 0;

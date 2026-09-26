@@ -1,10 +1,14 @@
 {
   "navLinks": [
-    { "label": "Home", "href": "/" },
-    { "label": "About", "href": "/#about" },
-    { "label": "Contact", "href": "/#contact" }
+    { "label": "Products", "href": "/products" },
+    { "label": "Categories", "href": "/#categories" },
+    { "label": "Latest products", "href": "/#latest-products" }
   ],
   "exploreProducts": { "label": "Explore products", "href": "/products" },
+  "cart": {
+    "href": "/cart",
+    "ariaLabel": "Cart, {count} items"
+  },
   "toggleNavigationAriaLabel": "Toggle navigation",
   "toggleThemeAriaLabel": "Toggle color theme"
 }
