@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap')
+layer(base);
+
+@import 'tailwindcss';
+@custom-variant dark (&:where([data-mantine-color-scheme="dark"], [data-mantine-color-scheme="dark"] *));
+@utility container {
+  padding-inline: 1rem;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --font-base: 'Montserrat', sans-serif;
+    color-scheme: var(--mantine-color-scheme);
+}
+
+html, body {
+    font-family: var(--font-base), sans-serif;
+}
+
+html[data-mantine-color-scheme="dark"] body {
+    background-color: #1c1c1e;
+}
+html[data-mantine-color-scheme="light"] body {
+    background-color: #f2f2f8;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+

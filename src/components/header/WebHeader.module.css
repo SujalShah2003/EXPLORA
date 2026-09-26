@@ -1,0 +1,96 @@
+.navLink {
+  position: relative;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: light-dark(var(--mantine-color-primary-7), var(--mantine-color-primary-3));
+}
+
+.navLink::after {
+  position: absolute;
+  right: var(--mantine-spacing-md);
+  bottom: 4px;
+  left: var(--mantine-spacing-md);
+  height: 2px;
+  background: var(--mantine-primary-color-filled);
+  border-radius: var(--mantine-radius-xl);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.navLink:hover::after,
+.navLink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.authButton,
+.themeButton {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.authButton:hover,
+.authButton:focus-visible,
+.themeButton:hover,
+.themeButton:focus-visible {
+  transform: translateY(-2px);
+}
+
+.signInButton:hover,
+.signInButton:focus-visible {
+  color: light-dark(var(--mantine-color-primary-7), var(--mantine-color-primary-2));
+  background: light-dark(var(--mantine-color-primary-0), var(--mantine-color-dark-6));
+  border-color: var(--mantine-primary-color-filled);
+  box-shadow: 0 7px 18px rgb(91 67 240 / 14%);
+}
+
+.signUpButton:hover,
+.signUpButton:focus-visible {
+  background: var(--mantine-color-primary-7);
+  box-shadow: 0 8px 20px rgb(91 67 240 / 30%);
+}
+
+.themeButton:hover,
+.themeButton:focus-visible {
+  color: var(--mantine-primary-color-filled);
+  background: light-dark(var(--mantine-color-primary-0), var(--mantine-color-dark-6));
+  border-color: var(--mantine-color-primary-5);
+  box-shadow: 0 7px 18px rgb(91 67 240 / 12%);
+}
+
+.themeButton svg {
+  transition: transform 220ms ease;
+}
+
+.themeButton:hover svg,
+.themeButton:focus-visible svg {
+  transform: rotate(-12deg) scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navLink,
+  .navLink::after,
+  .authButton,
+  .themeButton,
+  .themeButton svg {
+    transition: none;
+  }
+
+  .authButton:hover,
+  .authButton:focus-visible,
+  .themeButton:hover,
+  .themeButton:focus-visible,
+  .themeButton:hover svg,
+  .themeButton:focus-visible svg {
+    transform: none;
+  }
+}
