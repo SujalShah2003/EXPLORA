@@ -12,7 +12,6 @@ const ActionButtons = () => (
       component={Link}
       to={exploreProducts.href}
       leftSection={<FiCompass size={16} />}
-      className={`${styles.authButton} ${styles.signUpButton}`}
     >
       {exploreProducts.label}
     </Button>

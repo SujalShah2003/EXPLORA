@@ -1,0 +1,11 @@
+{
+  "eyebrow": "Categories",
+  "title": "Shop by category",
+  "description": "Jump straight into the aisle you're looking for.",
+  "viewAll": { "label": "View all products", "href": "/products" },
+  "productsHref": "/products?category=",
+  "errorTitle": "Couldn't load categories",
+  "errorMessage": "Something went wrong while fetching categories. Please try again.",
+  "retry": "Try again",
+  "empty": "No categories available right now."
+}

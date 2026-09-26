@@ -3,6 +3,7 @@ import common from './common.json';
 import header from './header.json';
 import footer from './footer.json';
 import banner from './home/banner.json';
+import categories from './home/categories.json';
 
 export const CONTENT = {
   brand,
@@ -10,6 +11,7 @@ export const CONTENT = {
   header,
   footer,
   home: {
-    banner
+    banner,
+    categories
   }
 };

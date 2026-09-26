@@ -1,0 +1,55 @@
+import type { IconType } from 'react-icons';
+import {
+  TbBallFootball,
+  TbBasket,
+  TbCar,
+  TbCategory,
+  TbDeviceLaptop,
+  TbDeviceMobile,
+  TbDeviceTablet,
+  TbDeviceWatch,
+  TbDiamond,
+  TbDroplet,
+  TbHanger,
+  TbHeadphones,
+  TbLamp,
+  TbMotorbike,
+  TbPerfume,
+  TbShirt,
+  TbShirtSport,
+  TbShoe,
+  TbShoppingBag,
+  TbSofa,
+  TbSparkles,
+  TbSunglasses,
+  TbToolsKitchen2
+} from 'react-icons/tb';
+
+const icons: Record<string, IconType> = {
+  beauty: TbSparkles,
+  fragrances: TbPerfume,
+  furniture: TbSofa,
+  groceries: TbBasket,
+  'home-decoration': TbLamp,
+  'kitchen-accessories': TbToolsKitchen2,
+  laptops: TbDeviceLaptop,
+  'mens-shirts': TbShirt,
+  'mens-shoes': TbShoe,
+  'mens-watches': TbDeviceWatch,
+  'mobile-accessories': TbHeadphones,
+  motorcycle: TbMotorbike,
+  'skin-care': TbDroplet,
+  smartphones: TbDeviceMobile,
+  'sports-accessories': TbBallFootball,
+  sunglasses: TbSunglasses,
+  tablets: TbDeviceTablet,
+  tops: TbShirtSport,
+  vehicle: TbCar,
+  'womens-bags': TbShoppingBag,
+  'womens-dresses': TbHanger,
+  'womens-jewellery': TbDiamond,
+  'womens-shoes': TbShoe,
+  'womens-watches': TbDeviceWatch
+};
+
+export const getCategoryIcon = (slug: string): IconType => icons[slug] ?? TbCategory;

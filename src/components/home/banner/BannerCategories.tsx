@@ -14,7 +14,7 @@ const categoryIcons: Record<string, IconType> = {
 };
 
 const BannerCategories = () => (
-  <SimpleGrid cols={2} spacing="md" visibleFrom="md" aria-hidden="true">
+  <SimpleGrid cols={2} spacing="xl" visibleFrom="md" aria-hidden="true">
     {categories.map(({ key, label }, index) => (
       <CategoryTile
         key={key}
