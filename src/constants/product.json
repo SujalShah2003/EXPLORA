@@ -1,0 +1,11 @@
+{
+  "href": "/product/",
+  "newBadge": "New",
+  "addedOn": "Added on",
+  "off": "off",
+  "ratingAriaLabel": "Rated {rating} out of 5",
+  "originalPriceAriaLabel": "Original price",
+  "viewDetails": "View details",
+  "addToCart": "Add to cart",
+  "inCart": "In cart ({count})"
+}

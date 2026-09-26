@@ -16,7 +16,7 @@ export const baseQuery = fetchBaseQuery({
 
 export const apiService = createApi({
   baseQuery: baseQuery,
-  tagTypes: ['CATEGORIES'],
+  tagTypes: ['CATEGORIES', 'PRODUCTS'],
   refetchOnReconnect: true,
   endpoints: () => ({})
 });

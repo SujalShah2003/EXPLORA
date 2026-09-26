@@ -13,7 +13,7 @@ const persistConfig = {
   key: 'pro',
   storage: storage,
   stateReconciler: hardSet,
-  whitelist: ['auth', 'config'],
+  whitelist: ['auth', 'config', 'cart'],
   debug: import.meta.env.MODE === 'development',
   transforms: [
     encryptTransform({

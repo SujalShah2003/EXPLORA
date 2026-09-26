@@ -1,0 +1,14 @@
+{
+  "eyebrow": "Just in",
+  "title": "Latest products",
+  "description": "Fresh arrivals and recently updated picks from across the store.",
+  "viewAll": { "label": "View all products", "href": "/products" },
+  "modifiedAfter": "2026-06-01T00:00:00Z",
+  "pageSize": 10,
+  "loadMore": "Load more",
+  "showing": "Showing {count} of {total}",
+  "errorTitle": "Couldn't load latest products",
+  "errorMessage": "Something went wrong while fetching the latest products. Please try again.",
+  "retry": "Try again",
+  "empty": "No new products right now. Check back soon."
+}

@@ -12,7 +12,7 @@ export const appMode: 'light' | 'dark' | 'auto' = 'light';
 const App: FC = () => {
   return (
     <Provider store={store}>
-      <MantineProvider theme={theme}>
+      <MantineProvider theme={theme} defaultColorScheme={appMode}>
         <PersistGate persistor={persistor} loading="Initializing...">
           <RouterProvider router={routes} />
         </PersistGate>
