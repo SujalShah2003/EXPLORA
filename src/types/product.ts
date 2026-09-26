@@ -17,6 +17,30 @@ export type ProductSummary = {
   meta: ProductMeta;
 };
 
+export type ProductReview = {
+  rating: number;
+  comment: string;
+  date: string;
+  reviewerName: string;
+  reviewerEmail: string;
+};
+
+export type ProductDetail = ProductSummary & {
+  stock: number;
+  tags: string[];
+  brand?: string;
+  sku: string;
+  weight: number;
+  dimensions: { width: number; height: number; depth: number };
+  warrantyInformation: string;
+  shippingInformation: string;
+  availabilityStatus: string;
+  reviews: ProductReview[];
+  returnPolicy: string;
+  minimumOrderQuantity: number;
+  images: string[];
+};
+
 export type ProductsResponse<T> = {
   products: T[];
   total: number;

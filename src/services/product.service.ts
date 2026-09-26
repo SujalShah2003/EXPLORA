@@ -1,6 +1,6 @@
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { apiService } from '@services/api.service.ts';
-import type { ProductsResponse, ProductSummary } from '@/types/product';
+import type { ProductDetail, ProductsResponse, ProductSummary } from '@/types/product';
 
 const PRODUCT_SUMMARY_FIELDS =
   'title,description,meta,thumbnail,price,rating,category,discountPercentage';
@@ -37,6 +37,11 @@ const product = apiService.injectEndpoints({
           order: 'desc'
         }
       }),
+      providesTags: ['PRODUCTS']
+    }),
+
+    getProductById: build.query<ProductDetail, string>({
+      query: id => `/products/${encodeURIComponent(id)}`,
       providesTags: ['PRODUCTS']
     }),
 
@@ -95,4 +100,4 @@ const product = apiService.injectEndpoints({
   })
 });
 
-export const { useGetLatestProductsQuery, useGetProductsQuery } = product;
+export const { useGetLatestProductsQuery, useGetProductsQuery, useGetProductByIdQuery } = product;

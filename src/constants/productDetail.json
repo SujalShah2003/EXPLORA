@@ -1,0 +1,45 @@
+{
+  "breadcrumbs": {
+    "home": { "label": "Home", "href": "/" },
+    "products": { "label": "Products", "href": "/products" },
+    "categoryHref": "/products?category="
+  },
+  "brand": "by {brand}",
+  "reviewsCount": "({count} reviews)",
+  "sku": "SKU",
+  "inStock": "{count} in stock",
+  "quantity": "Quantity",
+  "addToCart": "Add to cart",
+  "inCart": "{count} in cart",
+  "minimumOrder": "Minimum order: {count} units",
+  "galleryImageAlt": "{title} image {index}",
+  "galleryThumbAriaLabel": "Show image {index}",
+  "highlights": {
+    "shipping": "Shipping",
+    "warranty": "Warranty",
+    "returns": "Returns"
+  },
+  "specs": {
+    "title": "Specifications",
+    "brand": "Brand",
+    "category": "Category",
+    "sku": "SKU",
+    "weight": "Weight",
+    "weightUnit": "{value} g",
+    "dimensions": "Dimensions",
+    "dimensionsUnit": "{width} × {height} × {depth} cm",
+    "tags": "Tags",
+    "addedOn": "Added on",
+    "updatedOn": "Last updated"
+  },
+  "reviews": {
+    "title": "Customer reviews",
+    "empty": "No reviews yet."
+  },
+  "notFoundTitle": "Product not found",
+  "notFoundMessage": "We couldn't find the product you're looking for. It may have been removed.",
+  "backToProducts": "Back to products",
+  "errorTitle": "Couldn't load this product",
+  "errorMessage": "Something went wrong while fetching the product. Please try again.",
+  "retry": "Try again"
+}

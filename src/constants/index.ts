@@ -4,6 +4,7 @@ import header from './header.json';
 import footer from './footer.json';
 import product from './product.json';
 import products from './products.json';
+import productDetail from './productDetail.json';
 import banner from './home/banner.json';
 import categories from './home/categories.json';
 import latestProducts from './home/latestProducts.json';
@@ -15,6 +16,7 @@ export const CONTENT = {
   footer,
   product,
   products,
+  productDetail,
   home: {
     banner,
     categories,
