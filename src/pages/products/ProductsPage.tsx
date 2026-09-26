@@ -1,10 +1,12 @@
-import SectionHeader from '@/common/SectionHeader';
-import { CONTENT } from '@/constants';
+import { lazy, Suspense } from 'react';
+import ProductsSkeleton from './skeleton/ProductsSkeleton';
 
-const { eyebrow, title, description } = CONTENT.products;
+const Products = lazy(() => import('@/components/products/Products'));
 
 const ProductsPage = () => (
-  <SectionHeader eyebrow={eyebrow} title={title} description={description} />
+  <Suspense fallback={<ProductsSkeleton />}>
+    <Products />
+  </Suspense>
 );
 
 export default ProductsPage;

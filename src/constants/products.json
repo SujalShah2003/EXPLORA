@@ -1,5 +1,53 @@
 {
   "eyebrow": "Shop",
   "title": "All products",
-  "description": "Browse the full catalogue."
+  "description": "Search, filter and sort the full catalogue.",
+  "filters": {
+    "title": "Filters",
+    "reset": "Reset",
+    "search": {
+      "label": "Search",
+      "placeholder": "Search products...",
+      "clearAriaLabel": "Clear search"
+    },
+    "category": {
+      "label": "Category",
+      "placeholder": "All categories"
+    },
+    "sortBy": {
+      "label": "Sort by",
+      "placeholder": "Default",
+      "options": [
+        { "value": "price", "label": "Price" },
+        { "value": "rating", "label": "Rating" },
+        { "value": "title", "label": "Name" }
+      ]
+    },
+    "order": {
+      "label": "Order",
+      "options": [
+        { "value": "asc", "label": "Ascending" },
+        { "value": "desc", "label": "Descending" }
+      ]
+    },
+    "latest": {
+      "label": "Latest products only",
+      "modifiedAfter": "2026-06-01T00:00:00Z"
+    },
+    "limit": {
+      "label": "Per page",
+      "options": ["8", "12", "24", "48"]
+    }
+  },
+  "defaults": {
+    "sortBy": "",
+    "order": "asc",
+    "limit": 12
+  },
+  "showing": "Showing {from}–{to} of {total} products",
+  "errorTitle": "Couldn't load products",
+  "errorMessage": "Something went wrong while fetching products. Please try again.",
+  "retry": "Try again",
+  "empty": "No products match your filters.",
+  "clearFilters": "Clear filters"
 }

@@ -9,7 +9,7 @@
   "primaryCta": { "label": "Explore products", "href": "/products" },
   "secondaryCta": {
     "label": "Top rated",
-    "href": "/products?sort=rating&order=desc"
+    "href": "/products?sortBy=rating"
   },
   "categories": [
     { "key": "electronics", "label": "Electronics" },

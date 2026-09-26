@@ -9,8 +9,8 @@ import { apiService } from '@services/api.service.ts';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 const persistConfig = {
-  keyPrefix: 'pro:',
-  key: 'pro',
+  keyPrefix: 'root:',
+  key: 'product',
   storage: storage,
   stateReconciler: hardSet,
   whitelist: ['auth', 'config', 'cart'],
