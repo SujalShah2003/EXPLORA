@@ -1,7 +1,9 @@
 import { Anchor, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { navLinks } from './navLinks.temp';
+import { CONTENT } from '@/constants';
 import styles from './WebHeader.module.css';
+
+const { navLinks } = CONTENT.header;
 
 const WebHeader = () => (
   <Group gap={4} visibleFrom="md">

@@ -1,0 +1,30 @@
+{
+  "brand": {
+    "name": "LOGO",
+    "homeAriaLabel": "Go to home page"
+  },
+  "common": {
+    "loading": "Loading..."
+  },
+  "header": {
+    "navLinks": [
+      { "label": "Home", "href": "/" },
+      { "label": "About", "href": "/#about" },
+      { "label": "Contact", "href": "/#contact" }
+    ],
+    "exploreProducts": { "label": "Explore products", "href": "/products" },
+    "toggleNavigationAriaLabel": "Toggle navigation",
+    "toggleThemeAriaLabel": "Toggle color theme"
+  },
+  "footer": {
+    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut laoreet tincidunt, nunc nisl aliquam nunc, eget aliquam nisl nunc eu nunc.",
+    "links": [
+      { "label": "About", "href": "#about" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "rightsReserved": "All rights reserved."
+  },
+  "home": {
+    "title": "Home Page"
+  }
+}

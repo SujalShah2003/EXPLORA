@@ -9,6 +9,7 @@ import MobileHeader from '@/components/header/MobileHeader';
 import Footer from '@/components/footer/Footer';
 import ToggleTheme from '@/components/toggle-theme/ToggleTheme';
 import ActionButtons from '@/components/header/ActionButtons';
+import { CONTENT } from '@/constants';
 
 const MasterLayout = () => {
   const [opened, { toggle, close }] = useDisclosure(false);
@@ -42,7 +43,7 @@ const MasterLayout = () => {
                 onClick={toggle}
                 hiddenFrom="md"
                 size="sm"
-                aria-label="Toggle navigation"
+                aria-label={CONTENT.header.toggleNavigationAriaLabel}
               />
             </Group>
           </Container>

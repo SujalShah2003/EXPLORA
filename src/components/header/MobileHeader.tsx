@@ -1,8 +1,10 @@
 import { Box, Button, Divider, Stack } from "@mantine/core";
 import { Link } from "react-router-dom";
 import { FiCompass } from "react-icons/fi";
-import { navLinks } from "./navLinks.temp";
+import { CONTENT } from "@/constants";
 import styles from "./WebHeader.module.css";
+
+const { navLinks, exploreProducts } = CONTENT.header;
 
 type MobileHeaderProps = {
   close: () => void;
@@ -36,27 +38,16 @@ const MobileHeader = ({ close }: MobileHeaderProps) => {
         <Divider mb="md" />
 
         <Stack gap="sm">
-          <Button
-            component={Link}
-            to="/signin"
-            variant="default"
-            fullWidth
-            size="md"
-            className={`${styles.authButton} ${styles.signUpButton}`}
-            onClick={close}
-          >
-            Sign in
-          </Button>
 
           <Button
             component={Link}
-            to="/products"
+            to={exploreProducts.href}
             fullWidth
             size="md"
             leftSection={<FiCompass size={16} />}
             onClick={close}
           >
-            Explore products
+            {exploreProducts.label}
           </Button>
         </Stack>
       </Box>

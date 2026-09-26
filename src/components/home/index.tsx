@@ -1,9 +1,7 @@
-const HomeIndex = () => {
-  return (
-    <div>
-      Home Page
-    </div>
-  )
-}
+import { CONTENT } from '@/constants';
 
-export default HomeIndex
+const HomeIndex = () => {
+  return <div>{CONTENT.home.title}</div>;
+};
+
+export default HomeIndex;
