@@ -4,7 +4,6 @@ import {
   Button,
   Divider,
   Group,
-  NumberInput,
   Rating,
   SimpleGrid,
   Stack,
@@ -13,6 +12,7 @@ import {
   Title
 } from '@mantine/core';
 import { FiRefreshCw, FiShield, FiShoppingCart, FiTruck } from 'react-icons/fi';
+import QuantityInput from '@/common/QuantityInput';
 import { CONTENT } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { ADD_TO_CART, GET_CART_QUANTITY } from '@/store/app/cart.slice.ts';
@@ -107,15 +107,11 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       <Divider />
 
       <Group align="flex-end" gap="sm">
-        <NumberInput
+        <QuantityInput
           label={copy.quantity}
           value={quantity}
-          onChange={value => setQuantity(Math.max(1, Number(value) || 1))}
-          min={1}
+          onChange={setQuantity}
           max={Math.max(1, product.stock)}
-          clampBehavior="strict"
-          allowDecimal={false}
-          w={110}
           disabled={outOfStock}
         />
         <Button

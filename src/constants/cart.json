@@ -1,0 +1,30 @@
+{
+  "eyebrow": "Cart",
+  "title": "Your cart",
+  "description": "Review your items and check out when you're ready.",
+  "itemCount": "{count} items",
+  "each": "{price} each",
+  "remove": "Remove",
+  "removeAriaLabel": "Remove {title} from cart",
+  "clear": "Clear cart",
+  "summary": {
+    "title": "Order summary",
+    "subtotal": "Subtotal",
+    "items": "Items",
+    "shipping": "Shipping",
+    "shippingValue": "Calculated at checkout",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Continue shopping"
+  },
+  "empty": {
+    "title": "Your cart is empty",
+    "message": "Browse the catalogue and add something you like.",
+    "action": { "label": "Explore products", "href": "/products" }
+  },
+  "checkoutModal": {
+    "title": "Order placed",
+    "message": "Thanks for your order! We've received {count} items totalling {total}.",
+    "close": "Continue shopping"
+  }
+}

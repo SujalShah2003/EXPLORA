@@ -1,0 +1,112 @@
+import { useState } from 'react';
+import { Box, Button, Grid, Group, Stack, Text, ThemeIcon, Title } from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { FiCheckCircle, FiShoppingCart, FiTrash2 } from 'react-icons/fi';
+import SectionHeader from '@/common/SectionHeader';
+import AppModal from '@/components/modal/AppModal';
+import { CONTENT } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/store';
+import {
+  CLEAR_CART,
+  GET_CART_COUNT,
+  GET_CART_ITEMS,
+  GET_CART_SUBTOTAL
+} from '@/store/app/cart.slice.ts';
+import { formatPrice } from '@utils/format.ts';
+import CartItemRow from './CartItemRow';
+import CartSummary from './CartSummary';
+
+const copy = CONTENT.cart;
+
+const Cart = () => {
+  const dispatch = useAppDispatch();
+  const items = useAppSelector(GET_CART_ITEMS);
+  const count = useAppSelector(GET_CART_COUNT);
+  const subtotal = useAppSelector(GET_CART_SUBTOTAL);
+  const [placedOrder, setPlacedOrder] = useState<{ count: number; total: number } | null>(null);
+
+  const handleCheckout = () => {
+    setPlacedOrder({ count, total: subtotal });
+    dispatch(CLEAR_CART());
+  };
+
+  return (
+    <Box component="section">
+      <SectionHeader
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={
+          items.length ? copy.itemCount.replace('{count}', String(count)) : copy.description
+        }
+      />
+
+      {!items.length && (
+        <Stack align="center" gap="sm" py={64} ta="center">
+          <ThemeIcon variant="light" size={72} radius="xl">
+            <FiShoppingCart size={32} />
+          </ThemeIcon>
+          <Title order={2} fz="xl" fw={700} mt="sm">
+            {copy.empty.title}
+          </Title>
+          <Text c="dimmed">{copy.empty.message}</Text>
+          <Button component={Link} to={copy.empty.action.href} mt="sm">
+            {copy.empty.action.label}
+          </Button>
+        </Stack>
+      )}
+
+      {items.length > 0 && (
+        <Grid gap="xl" align="flex-start">
+          <Grid.Col span={{ base: 12, md: 8 }}>
+            <Stack gap="md">
+              {items.map(item => (
+                <CartItemRow key={item.id} item={item} />
+              ))}
+              <Group justify="flex-end">
+                <Button
+                  variant="subtle"
+                  color="red"
+                  leftSection={<FiTrash2 size={16} />}
+                  onClick={() => dispatch(CLEAR_CART())}
+                >
+                  {copy.clear}
+                </Button>
+              </Group>
+            </Stack>
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, md: 4 }}>
+            <CartSummary count={count} subtotal={subtotal} onCheckout={handleCheckout} />
+          </Grid.Col>
+        </Grid>
+      )}
+
+      <AppModal
+        opened={!!placedOrder}
+        onClose={() => setPlacedOrder(null)}
+        title={copy.checkoutModal.title}
+        size="md"
+      >
+        <Stack align="center" gap="md" ta="center">
+          <ThemeIcon variant="light" color="teal" size={64} radius="xl">
+            <FiCheckCircle size={32} />
+          </ThemeIcon>
+          <Text>
+            {copy.checkoutModal.message
+              .replace('{count}', String(placedOrder?.count ?? 0))
+              .replace('{total}', formatPrice(placedOrder?.total ?? 0))}
+          </Text>
+          <Button
+            component={Link}
+            to={copy.empty.action.href}
+            onClick={() => setPlacedOrder(null)}
+          >
+            {copy.checkoutModal.close}
+          </Button>
+        </Stack>
+      </AppModal>
+    </Box>
+  );
+};
+
+export default Cart;
