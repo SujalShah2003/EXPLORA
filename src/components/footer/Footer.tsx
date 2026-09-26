@@ -1,8 +1,9 @@
 import { Anchor, Box, Container, Divider, Group, Stack, Text } from '@mantine/core';
+import { Link } from 'react-router-dom';
 import Logo from '@/common/Logo';
 import { CONTENT } from '@/constants';
 
-const { brand, footer } = CONTENT;
+const { brand, footer, header } = CONTENT;
 
 const Footer = () => (
   <Box component="footer" bg="dark.9" c="gray.3" py={48}>
@@ -15,8 +16,8 @@ const Footer = () => (
           </Text>
         </Stack>
         <Group gap="xl">
-          {footer.links.map((link) => (
-            <Anchor key={link.label} c="gray.4" href={link.href}>
+          {header.navLinks.map((link) => (
+            <Anchor key={link.label} component={Link} to={link.href} c="gray.4">
               {link.label}
             </Anchor>
           ))}
