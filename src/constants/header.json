@@ -1,0 +1,10 @@
+{
+  "navLinks": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/#about" },
+    { "label": "Contact", "href": "/#contact" }
+  ],
+  "exploreProducts": { "label": "Explore products", "href": "/products" },
+  "toggleNavigationAriaLabel": "Toggle navigation",
+  "toggleThemeAriaLabel": "Toggle color theme"
+}

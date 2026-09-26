@@ -1,0 +1,20 @@
+{
+  "badge": "Discover something new",
+  "title": {
+    "start": "Find products you'll",
+    "highlight": "love",
+    "end": ", faster."
+  },
+  "description": "Search, filter and compare products across every category, then add your favourites to the cart in a click.",
+  "primaryCta": { "label": "Explore products", "href": "/products" },
+  "secondaryCta": {
+    "label": "Top rated",
+    "href": "/products?sort=rating&order=desc"
+  },
+  "categories": [
+    { "key": "electronics", "label": "Electronics" },
+    { "key": "fashion", "label": "Fashion" },
+    { "key": "home", "label": "Home & Living" },
+    { "key": "beauty", "label": "Beauty" }
+  ]
+}

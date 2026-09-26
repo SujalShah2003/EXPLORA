@@ -1,0 +1,8 @@
+{
+  "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut laoreet tincidunt, nunc nisl aliquam nunc, eget aliquam nisl nunc eu nunc.",
+  "links": [
+    { "label": "About", "href": "#about" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "rightsReserved": "All rights reserved."
+}

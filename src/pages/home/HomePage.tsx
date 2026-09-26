@@ -1,13 +1,13 @@
 import { lazy, Suspense } from 'react';
 import PageSkeleton from '@/common/PageSkeleton';
 
-const HomeIndex = lazy(() => import('@/components/home'));
+const Banner = lazy(() => import('@/components/home/banner/Banner'));
 
 const HomePage = () => {
   return (
     <div>
       <Suspense fallback={<PageSkeleton />}>
-        <HomeIndex />
+        <Banner />
       </Suspense>
     </div>
   );
