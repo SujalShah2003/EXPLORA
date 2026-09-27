@@ -61,12 +61,23 @@ Vite embeds these in the client bundle when it builds, so they must be set **bef
 
 ## Scripts
 
-| Command           | Description                                   |
-| ----------------- | --------------------------------------------- |
-| `npm run dev`     | Start the dev server                          |
-| `npm run build`   | Type-check and build to `build/`              |
-| `npm run preview` | Preview the production build locally          |
-| `npm run lint`    | Run ESLint                                    |
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the dev server                 |
+| `npm run build`   | Type-check and build to `build/`     |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint                           |
+
+## Deployment (static hosting, e.g. Render)
+
+| Setting           | Value                             |
+| ----------------- | --------------------------------- |
+| Build command     | `npm install && npm run build`    |
+| Publish directory | `build`                           |
+| Environment       | `VITE_API_BASE_URL`, `VITE_PERSIST_SECRET` |
+| Rewrite rule      | `/*` → `/index.html` (Rewrite)    |
+
+The rewrite rule is needed because routing happens in the browser. Without it, refreshing `/products`, `/cart` or `/product/:id` returns a 404.
 
 ## Project structure
 
@@ -137,4 +148,3 @@ Mantine uses `primary` by default. For the accent, use `color="accent"` or `var(
 | Product detail          | `GET /products/{id}`                              |
 
 DummyJSON can't search within a category. When both a search and a category are set, the app fetches that category and filters it by the search text in the browser.
-(for example `VITE_PERSIST_SECRET`) before deploying.
