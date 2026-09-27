@@ -12,8 +12,9 @@ import {
 import { Link } from 'react-router-dom';
 import { FiEye, FiShoppingCart } from 'react-icons/fi';
 import { CONTENT } from '@/constants';
-import { useAppDispatch, useAppSelector } from '@/store';
-import { ADD_TO_CART, GET_CART_QUANTITY } from '@/store/app/cart.slice.ts';
+import { useAddToCart } from '@/hooks/useAddToCart';
+import { useAppSelector } from '@/store';
+import { GET_CART_QUANTITY } from '@/store/app/cart.slice.ts';
 import type { ProductSummary } from '@/types/product';
 import {
   formatDate,
@@ -30,7 +31,7 @@ type ProductCardProps = {
 };
 
 const ProductCard = ({ product, isNew = false }: ProductCardProps) => {
-  const dispatch = useAppDispatch();
+  const addToCart = useAddToCart();
   const quantity = useAppSelector(GET_CART_QUANTITY(product.id));
 
   const discount = Math.round(product.discountPercentage);
@@ -41,14 +42,12 @@ const ProductCard = ({ product, isNew = false }: ProductCardProps) => {
   const detailsHref = `${copy.href}${product.id}`;
 
   const handleAddToCart = () =>
-    dispatch(
-      ADD_TO_CART({
-        id: product.id,
-        title: product.title,
-        thumbnail: product.thumbnail,
-        price: finalPrice
-      })
-    );
+    addToCart({
+      id: product.id,
+      title: product.title,
+      thumbnail: product.thumbnail,
+      price: finalPrice
+    });
 
   return (
     <Card withBorder radius="lg" padding="md" h="100%">

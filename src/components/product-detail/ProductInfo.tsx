@@ -14,8 +14,9 @@ import {
 import { FiRefreshCw, FiShield, FiShoppingCart, FiTruck } from 'react-icons/fi';
 import QuantityInput from '@/common/QuantityInput';
 import { CONTENT } from '@/constants';
-import { useAppDispatch, useAppSelector } from '@/store';
-import { ADD_TO_CART, GET_CART_QUANTITY } from '@/store/app/cart.slice.ts';
+import { useAddToCart } from '@/hooks/useAddToCart';
+import { useAppSelector } from '@/store';
+import { GET_CART_QUANTITY } from '@/store/app/cart.slice.ts';
 import type { ProductDetail } from '@/types/product';
 import { formatPrice, formatSlug, getDiscountedPrice } from '@utils/format.ts';
 
@@ -26,7 +27,7 @@ type ProductInfoProps = {
 };
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
-  const dispatch = useAppDispatch();
+  const addToCart = useAddToCart();
   const inCart = useAppSelector(GET_CART_QUANTITY(product.id));
   const [quantity, setQuantity] = useState(1);
 
@@ -41,15 +42,13 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   ];
 
   const handleAddToCart = () =>
-    dispatch(
-      ADD_TO_CART({
-        id: product.id,
-        title: product.title,
-        thumbnail: product.thumbnail,
-        price: finalPrice,
-        quantity
-      })
-    );
+    addToCart({
+      id: product.id,
+      title: product.title,
+      thumbnail: product.thumbnail,
+      price: finalPrice,
+      quantity
+    });
 
   return (
     <Stack gap="md">
@@ -136,11 +135,11 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           </Text>
         )}
       </Group>
-      {product.minimumOrderQuantity > 1 && (
+      {/* {product.minimumOrderQuantity > 1 && (
         <Text fz="xs" c="dimmed">
           {copy.minimumOrder.replace('{count}', String(product.minimumOrderQuantity))}
         </Text>
-      )}
+      )} */}
 
       <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="sm" mt="xs">
         {highlights.map(({ icon: Icon, label, value }) => (

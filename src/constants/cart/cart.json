@@ -6,6 +6,10 @@
   "each": "{price} each",
   "removeAriaLabel": "Remove {title} from cart",
   "clear": "Clear cart",
+  "toast": {
+    "title": "Added to cart",
+    "description": "{quantity} × {title}"
+  },
   "summary": {
     "title": "Order summary",
     "subtotal": "Subtotal",
