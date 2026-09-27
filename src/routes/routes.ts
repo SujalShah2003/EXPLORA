@@ -4,6 +4,7 @@ import HomePage from '@/pages/home/HomePage';
 import ProductsPage from '@/pages/products/ProductsPage';
 import ProductDetailPage from '@/pages/product-detail/ProductDetailPage';
 import CartPage from '@/pages/cart/CartPage';
+import NotFoundPage from '@/pages/not-found/NotFoundPage';
 
 export const routes = createBrowserRouter(
   [
@@ -28,7 +29,7 @@ export const routes = createBrowserRouter(
         },
         {
           path: '*',
-          Component: HomePage
+          Component: NotFoundPage
         }
       ]
     }

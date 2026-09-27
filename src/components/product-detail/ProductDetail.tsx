@@ -1,6 +1,7 @@
-import { Anchor, Box, Breadcrumbs, Button, SimpleGrid, Stack, Text, Title } from '@mantine/core';
+import { Anchor, Box, Breadcrumbs, SimpleGrid, Text } from '@mantine/core';
 import { Link, useParams } from 'react-router-dom';
-import { FiArrowLeft, FiChevronRight, FiHome } from 'react-icons/fi';
+import { FiChevronRight, FiHome } from 'react-icons/fi';
+import NotFound from '@/common/NotFound';
 import SectionError from '@/common/SectionError';
 import { CONTENT } from '@/constants';
 import ProductDetailSkeleton from '@/pages/product-detail/skeleton/ProductDetailSkeleton';
@@ -26,23 +27,15 @@ const ProductDetail = () => {
       {isLoading && <ProductDetailSkeleton />}
 
       {isNotFound && (
-        <Stack align="center" gap="sm" py={80} ta="center">
-          <Title order={1} fz={28} fw={800}>
-            {copy.notFoundTitle}
-          </Title>
-          <Text c="dimmed" maw={420}>
-            {copy.notFoundMessage}
-          </Text>
-          <Button
-            component={Link}
-            to={copy.breadcrumbs.products.href}
-            variant="light"
-            leftSection={<FiArrowLeft size={16} />}
-            mt="sm"
-          >
-            {copy.backToProducts}
-          </Button>
-        </Stack>
+        <NotFound
+          title={copy.notFoundTitle}
+          message={copy.notFoundMessage}
+          primaryAction={{
+            label: copy.backToProducts,
+            href: copy.breadcrumbs.products.href
+          }}
+          secondaryAction={null}
+        />
       )}
 
       {isError && !isNotFound && !isFetching && (
