@@ -16,7 +16,13 @@ const copy = CONTENT.productDetail;
 
 const ProductDetail = () => {
   const { id = '' } = useParams();
-  const { currentData: product, isFetching, isError, error, refetch } = useGetProductByIdQuery(id);
+  const {
+    currentData: product,
+    isFetching,
+    isError,
+    error,
+    refetch
+  } = useGetProductByIdQuery(id);
 
   const status = error && 'status' in error ? error.status : undefined;
   const isNotFound = isError && (status === 404 || status === 400);
@@ -63,20 +69,32 @@ const ProductDetail = () => {
               c="dimmed"
               aria-label={copy.breadcrumbs.home.label}
               display="flex"
+              underline="never"
             >
               <FiHome size={16} />
             </Anchor>
-            <Anchor component={Link} to={copy.breadcrumbs.products.href} c="dimmed">
+            <Anchor
+              component={Link}
+              to={copy.breadcrumbs.products.href}
+              c="dimmed"
+              underline="never"
+            >
               {copy.breadcrumbs.products.label}
             </Anchor>
             <Anchor
               component={Link}
               to={`${copy.breadcrumbs.categoryHref}${encodeURIComponent(product.category)}`}
               c="dimmed"
+              underline="never"
             >
               {formatSlug(product.category)}
             </Anchor>
-            <Text fz="sm" c="var(--mantine-color-text)" lineClamp={1} aria-current="page">
+            <Text
+              fz="sm"
+              c="var(--mantine-color-text)"
+              lineClamp={1}
+              aria-current="page"
+            >
               {product.title}
             </Text>
           </Breadcrumbs>
@@ -85,7 +103,9 @@ const ProductDetail = () => {
             <ProductGallery
               key={product.id}
               title={product.title}
-              images={product.images.length ? product.images : [product.thumbnail]}
+              images={
+                product.images.length ? product.images : [product.thumbnail]
+              }
             />
             <ProductInfo key={`info-${product.id}`} product={product} />
           </SimpleGrid>
