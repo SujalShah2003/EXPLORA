@@ -1,29 +1,29 @@
-import brand from './brand.json';
-import cart from './cart.json';
-import common from './common.json';
-import header from './header.json';
-import footer from './footer.json';
-import notFound from './notFound.json';
-import product from './product.json';
-import products from './products.json';
-import productDetail from './productDetail.json';
+import brand from './common/brand.json';
+import common from './common/common.json';
+import notFound from './common/notFound.json';
+import header from './layout/header.json';
+import footer from './layout/footer.json';
 import banner from './home/banner.json';
 import categories from './home/categories.json';
 import latestProducts from './home/latestProducts.json';
+import products from './products/products.json';
+import product from './product/product.json';
+import productDetail from './product/productDetail.json';
+import cart from './cart/cart.json';
 
 export const CONTENT = {
   brand,
-  cart,
   common,
+  notFound,
   header,
   footer,
-  notFound,
-  product,
-  products,
-  productDetail,
   home: {
     banner,
     categories,
     latestProducts
-  }
+  },
+  products,
+  product,
+  productDetail,
+  cart
 };
