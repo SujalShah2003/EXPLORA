@@ -40,15 +40,74 @@ A product discovery app: browse, search, filter and sort a product catalogue, vi
 
 ## Getting started
 
-Requirements: Node.js 18+ and npm.
+### Prerequisites
+
+- [Node.js](https://nodejs.org) 18 or newer (npm comes with it)
+- [Git](https://git-scm.com)
+
+Check the installed versions:
 
 ```bash
-npm install
-cp .env.example .env   # then fill in the values
-npm run dev
+node -v
+npm -v
+git --version
 ```
 
-The dev server runs at http://localhost:3000.
+### Run the project locally
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/SujalShah2003/EXPLORA.git
+   ```
+
+2. **Move into the project folder**
+
+   ```bash
+   cd EXPLORA
+   ```
+
+3. **Install the dependencies**
+
+   ```bash
+   npm install
+   ```
+
+4. **Create your `.env` file** from the example:
+
+   ```bash
+   # macOS / Linux / Git Bash
+   cp .env.example .env
+
+   # Windows (PowerShell)
+   Copy-Item .env.example .env
+   ```
+
+   Then open `.env` and set the values (see [Environment variables](#environment-variables) below):
+
+   ```env
+   VITE_API_BASE_URL=https://dummyjson.com
+   VITE_PERSIST_SECRET=replace-with-a-long-random-string
+   ```
+
+5. **Start the dev server**
+
+   ```bash
+   npm run dev
+   ```
+
+6. **Open the app** at [http://localhost:3000](http://localhost:3000).
+
+   The dev server reloads when you save a file. Stop it with `Ctrl + C`.
+
+### Build for production (optional)
+
+```bash
+npm run build     # type-checks and outputs to build/
+npm run preview   # serves the build locally to test it
+```
+
+> If you change `.env`, restart `npm run dev` (or rebuild) for the new values to apply.
 
 ### Environment variables
 
