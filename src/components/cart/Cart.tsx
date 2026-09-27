@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Button, Grid, Group, Stack, Text, ThemeIcon, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { FiCheckCircle, FiShoppingCart, FiTrash2 } from 'react-icons/fi';
+import { FiCheckCircle, FiShoppingBag, FiShoppingCart, FiTrash2 } from 'react-icons/fi';
 import SectionHeader from '@/common/SectionHeader';
 import AppModal from '@/components/modal/AppModal';
 import { CONTENT } from '@/constants';
@@ -85,25 +85,21 @@ const Cart = () => {
         opened={!!placedOrder}
         onClose={() => setPlacedOrder(null)}
         title={copy.checkoutModal.title}
-        size="md"
+        icon={<FiCheckCircle size={32} />}
+        description={copy.checkoutModal.message
+          .replace('{count}', String(placedOrder?.count ?? 0))
+          .replace('{total}', formatPrice(placedOrder?.total ?? 0))}
       >
-        <Stack align="center" gap="md" ta="center">
-          <ThemeIcon variant="light" color="teal" size={64} radius="xl">
-            <FiCheckCircle size={32} />
-          </ThemeIcon>
-          <Text>
-            {copy.checkoutModal.message
-              .replace('{count}', String(placedOrder?.count ?? 0))
-              .replace('{total}', formatPrice(placedOrder?.total ?? 0))}
-          </Text>
-          <Button
-            component={Link}
-            to={copy.empty.action.href}
-            onClick={() => setPlacedOrder(null)}
-          >
-            {copy.checkoutModal.close}
-          </Button>
-        </Stack>
+        <Button
+          component={Link}
+          to={copy.empty.action.href}
+          onClick={() => setPlacedOrder(null)}
+          size="lg"
+          fullWidth
+          leftSection={<FiShoppingBag size={18} />}
+        >
+          {copy.checkoutModal.close}
+        </Button>
       </AppModal>
     </Box>
   );
