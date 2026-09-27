@@ -1,10 +1,14 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import MasterLayout from '@/layouts/MasterLayout';
-import HomePage from '@/pages/home/HomePage';
-import ProductsPage from '@/pages/products/ProductsPage';
-import ProductDetailPage from '@/pages/product-detail/ProductDetailPage';
-import CartPage from '@/pages/cart/CartPage';
-import NotFoundPage from '@/pages/not-found/NotFoundPage';
+
+const HomePage = lazy(() => import('@/pages/home/HomePage'));
+const ProductsPage = lazy(() => import('@/pages/products/ProductsPage'));
+const ProductDetailPage = lazy(
+  () => import('@/pages/product-detail/ProductDetailPage')
+);
+const CartPage = lazy(() => import('@/pages/cart/CartPage'));
+const NotFoundPage = lazy(() => import('@/pages/not-found/NotFoundPage'));
 
 export const routes = createBrowserRouter(
   [

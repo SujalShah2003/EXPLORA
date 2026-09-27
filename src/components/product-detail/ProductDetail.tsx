@@ -1,4 +1,13 @@
-import { Anchor, Box, Breadcrumbs, SimpleGrid, Text } from '@mantine/core';
+import { lazy, Suspense } from 'react';
+import {
+  Anchor,
+  Box,
+  Breadcrumbs,
+  SimpleGrid,
+  Skeleton,
+  Stack,
+  Text
+} from '@mantine/core';
 import { Link, useParams } from 'react-router-dom';
 import { FiChevronRight, FiHome } from 'react-icons/fi';
 import NotFound from '@/common/NotFound';
@@ -7,10 +16,23 @@ import { CONTENT } from '@/constants';
 import ProductDetailSkeleton from '@/pages/product-detail/skeleton/ProductDetailSkeleton';
 import { useGetProductByIdQuery } from '@services/product.service.ts';
 import { formatSlug } from '@utils/format.ts';
-import ProductGallery from './ProductGallery';
-import ProductInfo from './ProductInfo';
-import ProductSpecs from './ProductSpecs';
-import ProductReviews from './ProductReviews';
+const ProductGallery = lazy(() => import('./ProductGallery'));
+const ProductInfo = lazy(() => import('./ProductInfo'));
+const ProductSpecs = lazy(() => import('./ProductSpecs'));
+const ProductReviews = lazy(() => import('./ProductReviews'));
+
+const galleryFallback = <Skeleton h={{ base: 330, md: 470 }} radius="lg" />;
+const infoFallback = (
+  <Stack gap="md">
+    <Skeleton h={22} w={180} radius="xl" />
+    <Skeleton h={34} w="85%" />
+    <Skeleton h={18} w={200} />
+    <Skeleton h={34} w={220} />
+    <Skeleton h={70} />
+    <Skeleton h={42} w={340} radius="md" />
+  </Stack>
+);
+const panelFallback = <Skeleton h={320} radius="lg" />;
 
 const copy = CONTENT.productDetail;
 
@@ -100,19 +122,27 @@ const ProductDetail = () => {
           </Breadcrumbs>
 
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing={48}>
-            <ProductGallery
-              key={product.id}
-              title={product.title}
-              images={
-                product.images.length ? product.images : [product.thumbnail]
-              }
-            />
-            <ProductInfo key={`info-${product.id}`} product={product} />
+            <Suspense fallback={galleryFallback}>
+              <ProductGallery
+                key={product.id}
+                title={product.title}
+                images={
+                  product.images.length ? product.images : [product.thumbnail]
+                }
+              />
+            </Suspense>
+            <Suspense fallback={infoFallback}>
+              <ProductInfo key={`info-${product.id}`} product={product} />
+            </Suspense>
           </SimpleGrid>
 
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing="lg" mt={48}>
-            <ProductSpecs product={product} />
-            <ProductReviews reviews={product.reviews} />
+            <Suspense fallback={panelFallback}>
+              <ProductSpecs product={product} />
+            </Suspense>
+            <Suspense fallback={panelFallback}>
+              <ProductReviews reviews={product.reviews} />
+            </Suspense>
           </SimpleGrid>
         </>
       )}

@@ -1,10 +1,12 @@
+import { lazy, Suspense } from 'react';
 import { Box, SimpleGrid, Text } from '@mantine/core';
 import SectionHeader from '@/common/SectionHeader';
 import SectionError from '@/common/SectionError';
 import { CONTENT } from '@/constants';
 import { useGetCategoryListQuery } from '@services/category.service.ts';
-import CategoryCard from './CategoryCard';
 import CategoriesSkeleton from './CategoriesSkeleton';
+
+const CategoryCard = lazy(() => import('./CategoryCard'));
 
 const copy = CONTENT.home.categories;
 
@@ -54,9 +56,11 @@ const Categories = () => {
 
       {isSuccess && categories.length > 0 && (
         <SimpleGrid cols={gridCols} spacing="md">
-          {categories.map(slug => (
-            <CategoryCard key={slug} slug={slug} />
-          ))}
+          <Suspense fallback={<CategoriesSkeleton count={categories.length} />}>
+            {categories.map(slug => (
+              <CategoryCard key={slug} slug={slug} />
+            ))}
+          </Suspense>
         </SimpleGrid>
       )}
     </Box>

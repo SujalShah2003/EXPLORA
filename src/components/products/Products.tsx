@@ -1,14 +1,16 @@
-import { Box, Button, SimpleGrid, Stack, Text } from '@mantine/core';
+import { lazy, Suspense } from 'react';
+import { Box, Button, SimpleGrid, Skeleton, Stack, Text } from '@mantine/core';
 import dayjs from 'dayjs';
 import SectionHeader from '@/common/SectionHeader';
 import SectionError from '@/common/SectionError';
-import ProductCard from '@/components/product/ProductCard';
 import ProductCardSkeleton from '@/components/product/ProductCardSkeleton';
 import { CONTENT } from '@/constants';
 import { useGetProductsQuery } from '@services/product.service.ts';
-import ProductFilters from './ProductFilters';
-import ProductsPagination from './ProductsPagination';
 import { useProductFilters } from './useProductFilters';
+
+const ProductCard = lazy(() => import('@/components/product/ProductCard'));
+const ProductFilters = lazy(() => import('./ProductFilters'));
+const ProductsPagination = lazy(() => import('./ProductsPagination'));
 
 const copy = CONTENT.products;
 
@@ -39,14 +41,20 @@ const Products = () => {
 
   return (
     <Box component="section">
-      <SectionHeader eyebrow={copy.eyebrow} title={copy.title} description={copy.description} />
-
-      <ProductFilters
-        values={values}
-        isFiltered={isFiltered}
-        onChange={update}
-        onReset={reset}
+      <SectionHeader
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        description={copy.description}
       />
+
+      <Suspense fallback={<Skeleton h={170} radius="lg" mb="xl" />}>
+        <ProductFilters
+          values={values}
+          isFiltered={isFiltered}
+          onChange={update}
+          onReset={reset}
+        />
+      </Suspense>
 
       {isLoading && (
         <SimpleGrid cols={gridCols} spacing="lg" aria-busy="true">
@@ -80,22 +88,32 @@ const Products = () => {
       {currentData && products.length > 0 && (
         <>
           <SimpleGrid cols={gridCols} spacing="lg">
-            {products.map(product => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                isNew={dayjs(product.meta.createdAt).isAfter(copy.filters.latest.modifiedAfter)}
-              />
-            ))}
+            <Suspense
+              fallback={Array.from({ length: products.length }, (_, i) => (
+                <ProductCardSkeleton key={i} />
+              ))}
+            >
+              {products.map(product => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  isNew={dayjs(product.meta.createdAt).isAfter(
+                    copy.filters.latest.modifiedAfter
+                  )}
+                />
+              ))}
+            </Suspense>
           </SimpleGrid>
 
-          <ProductsPagination
-            page={page}
-            limit={limit}
-            total={total}
-            onPageChange={handlePageChange}
-            onLimitChange={value => update({ limit: value })}
-          />
+          <Suspense fallback={<Skeleton h={36} radius="md" mt="xl" />}>
+            <ProductsPagination
+              page={page}
+              limit={limit}
+              total={total}
+              onPageChange={handlePageChange}
+              onLimitChange={value => update({ limit: value })}
+            />
+          </Suspense>
         </>
       )}
     </Box>

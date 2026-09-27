@@ -1,6 +1,8 @@
-import { Badge, Box, Text, Title } from '@mantine/core';
+import { lazy, Suspense } from 'react';
+import { Badge, Box, Group, Skeleton, Text, Title } from '@mantine/core';
 import { CONTENT } from '@/constants';
-import BannerActions from './BannerActions';
+
+const BannerActions = lazy(() => import('./BannerActions'));
 
 const { banner } = CONTENT.home;
 
@@ -10,7 +12,13 @@ const BannerContent = () => (
       {banner.badge}
     </Badge>
 
-    <Title order={1} fz={{ base: 34, sm: 44, md: 52 }} lh={1.1} fw={800} mb="md">
+    <Title
+      order={1}
+      fz={{ base: 34, sm: 44, md: 52 }}
+      lh={1.1}
+      fw={800}
+      mb="md"
+    >
       {banner.title.start}{' '}
       <Text component="span" inherit c="accent.4">
         {banner.title.highlight}
@@ -22,7 +30,16 @@ const BannerContent = () => (
       {banner.description}
     </Text>
 
-    <BannerActions />
+    <Suspense
+      fallback={
+        <Group gap="sm">
+          <Skeleton h={50} w={190} radius="md" />
+          <Skeleton h={50} w={140} radius="md" />
+        </Group>
+      }
+    >
+      <BannerActions />
+    </Suspense>
   </Box>
 );
 

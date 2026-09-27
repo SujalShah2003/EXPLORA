@@ -17,7 +17,7 @@ const persistConfig = {
   debug: import.meta.env.MODE === 'development',
   transforms: [
     encryptTransform({
-      secretKey: '336205c57461932b98e543c228f236fb077', // Move and update this key in .env
+      secretKey: import.meta.env.VITE_PERSIST_SECRET,
       onError: function (error) {
         console.log('Critical Error Transforming Encrypted Data ==>', error);
       }

@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Box, Button, SimpleGrid, Stack, Text } from '@mantine/core';
 import dayjs from 'dayjs';
 import SectionHeader from '@/common/SectionHeader';
 import SectionError from '@/common/SectionError';
-import ProductCard from '@/components/product/ProductCard';
 import ProductCardSkeleton from '@/components/product/ProductCardSkeleton';
 import { CONTENT } from '@/constants';
 import { useGetLatestProductsQuery } from '@services/product.service.ts';
+
+const ProductCard = lazy(() => import('@/components/product/ProductCard'));
 
 const copy = CONTENT.home.latestProducts;
 
@@ -69,13 +70,21 @@ const LatestProducts = () => {
 
       {isSuccess && products.length > 0 && (
         <SimpleGrid cols={gridCols} spacing="lg" aria-busy={isLoadingMore}>
-          {products.map(product => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              isNew={dayjs(product.meta.createdAt).isAfter(copy.modifiedAfter)}
-            />
-          ))}
+          <Suspense
+            fallback={Array.from({ length: products.length }, (_, i) => (
+              <ProductCardSkeleton key={i} />
+            ))}
+          >
+            {products.map(product => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                isNew={dayjs(product.meta.createdAt).isAfter(
+                  copy.modifiedAfter
+                )}
+              />
+            ))}
+          </Suspense>
           {isLoadingMore &&
             Array.from({ length: pendingCount }, (_, i) => (
               <ProductCardSkeleton key={`pending-${i}`} />

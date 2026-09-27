@@ -1,4 +1,12 @@
-import { AppShell, Burger, Container, Group } from '@mantine/core';
+import { Suspense } from 'react';
+import {
+  AppShell,
+  Burger,
+  Center,
+  Container,
+  Group,
+  Loader
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Outlet } from 'react-router-dom';
 
@@ -23,7 +31,7 @@ const MasterLayout = () => {
         navbar={{
           width: 300,
           breakpoint: 'md',
-          collapsed: { desktop: true, mobile: !opened },
+          collapsed: { desktop: true, mobile: !opened }
         }}
         padding={0}
       >
@@ -61,7 +69,15 @@ const MasterLayout = () => {
 
         <AppShell.Main display="flex" style={{ flexDirection: 'column' }}>
           <Container size="xl" py={48} w="100%" flex={1}>
-            <Outlet />
+            <Suspense
+              fallback={
+                <Center py={120} aria-label={CONTENT.common.loading}>
+                  <Loader type="dots" />
+                </Center>
+              }
+            >
+              <Outlet />
+            </Suspense>
           </Container>
           <Footer />
         </AppShell.Main>

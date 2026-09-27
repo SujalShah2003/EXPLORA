@@ -1,9 +1,23 @@
-import { useState } from 'react';
-import { Box, Button, Grid, Group, Stack, Text, ThemeIcon, Title } from '@mantine/core';
+import { lazy, Suspense, useState } from 'react';
+import {
+  Box,
+  Button,
+  Grid,
+  Group,
+  Skeleton,
+  Stack,
+  Text,
+  ThemeIcon,
+  Title
+} from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { FiCheckCircle, FiShoppingBag, FiShoppingCart, FiTrash2 } from 'react-icons/fi';
+import {
+  FiCheckCircle,
+  FiShoppingBag,
+  FiShoppingCart,
+  FiTrash2
+} from 'react-icons/fi';
 import SectionHeader from '@/common/SectionHeader';
-import AppModal from '@/components/modal/AppModal';
 import { CONTENT } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
@@ -13,8 +27,10 @@ import {
   GET_CART_SUBTOTAL
 } from '@/store/app/cart.slice.ts';
 import { formatPrice } from '@utils/format.ts';
-import CartItemRow from './CartItemRow';
-import CartSummary from './CartSummary';
+
+const AppModal = lazy(() => import('@/components/modal/AppModal'));
+const CartItemRow = lazy(() => import('./CartItemRow'));
+const CartSummary = lazy(() => import('./CartSummary'));
 
 const copy = CONTENT.cart;
 
@@ -25,7 +41,10 @@ const Cart = () => {
   const subtotal = useAppSelector(GET_CART_SUBTOTAL);
   const shipping = copy.summary.shippingCost;
   const total = Math.round((subtotal + shipping) * 100) / 100;
-  const [placedOrder, setPlacedOrder] = useState<{ count: number; total: number } | null>(null);
+  const [placedOrder, setPlacedOrder] = useState<{
+    count: number;
+    total: number;
+  } | null>(null);
 
   const handleCheckout = () => {
     setPlacedOrder({ count, total });
@@ -38,7 +57,9 @@ const Cart = () => {
         eyebrow={copy.eyebrow}
         title={copy.title}
         description={
-          items.length ? copy.itemCount.replace('{count}', String(count)) : copy.description
+          items.length
+            ? copy.itemCount.replace('{count}', String(count))
+            : copy.description
         }
       />
 
@@ -61,9 +82,15 @@ const Cart = () => {
         <Grid gap="xl" align="flex-start">
           <Grid.Col span={{ base: 12, md: 8 }}>
             <Stack gap="md">
-              {items.map(item => (
-                <CartItemRow key={item.id} item={item} />
-              ))}
+              <Suspense
+                fallback={items.map(item => (
+                  <Skeleton key={item.id} h={114} radius="lg" />
+                ))}
+              >
+                {items.map(item => (
+                  <CartItemRow key={item.id} item={item} />
+                ))}
+              </Suspense>
               <Group justify="flex-end">
                 <Button
                   variant="subtle"
@@ -78,37 +105,41 @@ const Cart = () => {
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <CartSummary
-              count={count}
-              subtotal={subtotal}
-              shipping={shipping}
-              total={total}
-              onCheckout={handleCheckout}
-            />
+            <Suspense fallback={<Skeleton h={400} radius="lg" />}>
+              <CartSummary
+                count={count}
+                subtotal={subtotal}
+                shipping={shipping}
+                total={total}
+                onCheckout={handleCheckout}
+              />
+            </Suspense>
           </Grid.Col>
         </Grid>
       )}
 
-      <AppModal
-        opened={!!placedOrder}
-        onClose={() => setPlacedOrder(null)}
-        title={copy.checkoutModal.title}
-        icon={<FiCheckCircle size={32} />}
-        description={copy.checkoutModal.message
-          .replace('{count}', String(placedOrder?.count ?? 0))
-          .replace('{total}', formatPrice(placedOrder?.total ?? 0))}
-      >
-        <Button
-          component={Link}
-          to={copy.empty.action.href}
-          onClick={() => setPlacedOrder(null)}
-          size="lg"
-          fullWidth
-          leftSection={<FiShoppingBag size={18} />}
+      <Suspense fallback={null}>
+        <AppModal
+          opened={!!placedOrder}
+          onClose={() => setPlacedOrder(null)}
+          title={copy.checkoutModal.title}
+          icon={<FiCheckCircle size={32} />}
+          description={copy.checkoutModal.message
+            .replace('{count}', String(placedOrder?.count ?? 0))
+            .replace('{total}', formatPrice(placedOrder?.total ?? 0))}
         >
-          {copy.checkoutModal.close}
-        </Button>
-      </AppModal>
+          <Button
+            component={Link}
+            to={copy.empty.action.href}
+            onClick={() => setPlacedOrder(null)}
+            size="lg"
+            fullWidth
+            leftSection={<FiShoppingBag size={18} />}
+          >
+            {copy.checkoutModal.close}
+          </Button>
+        </AppModal>
+      </Suspense>
     </Box>
   );
 };
