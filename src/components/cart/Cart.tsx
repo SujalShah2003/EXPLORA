@@ -23,10 +23,12 @@ const Cart = () => {
   const items = useAppSelector(GET_CART_ITEMS);
   const count = useAppSelector(GET_CART_COUNT);
   const subtotal = useAppSelector(GET_CART_SUBTOTAL);
+  const shipping = copy.summary.shippingCost;
+  const total = Math.round((subtotal + shipping) * 100) / 100;
   const [placedOrder, setPlacedOrder] = useState<{ count: number; total: number } | null>(null);
 
   const handleCheckout = () => {
-    setPlacedOrder({ count, total: subtotal });
+    setPlacedOrder({ count, total });
     dispatch(CLEAR_CART());
   };
 
@@ -76,7 +78,13 @@ const Cart = () => {
           </Grid.Col>
 
           <Grid.Col span={{ base: 12, md: 4 }}>
-            <CartSummary count={count} subtotal={subtotal} onCheckout={handleCheckout} />
+            <CartSummary
+              count={count}
+              subtotal={subtotal}
+              shipping={shipping}
+              total={total}
+              onCheckout={handleCheckout}
+            />
           </Grid.Col>
         </Grid>
       )}

@@ -9,10 +9,12 @@ const copy = CONTENT.cart.summary;
 type CartSummaryProps = {
   count: number;
   subtotal: number;
+  shipping: number;
+  total: number;
   onCheckout: () => void;
 };
 
-const CartSummary = ({ count, subtotal, onCheckout }: CartSummaryProps) => (
+const CartSummary = ({ count, subtotal, shipping, total, onCheckout }: CartSummaryProps) => (
   <Paper withBorder radius="lg" p="lg" pos="sticky" top={100}>
     <Title order={2} fz="lg" fw={700} mb="md">
       {copy.title}
@@ -29,9 +31,7 @@ const CartSummary = ({ count, subtotal, onCheckout }: CartSummaryProps) => (
       </Group>
       <Group justify="space-between">
         <Text c="dimmed">{copy.shipping}</Text>
-        <Text fz="sm" c="dimmed">
-          {copy.shippingValue}
-        </Text>
+        <Text fw={600}>{formatPrice(shipping)}</Text>
       </Group>
 
       <Divider my="xs" />
@@ -41,7 +41,7 @@ const CartSummary = ({ count, subtotal, onCheckout }: CartSummaryProps) => (
           {copy.total}
         </Text>
         <Text fw={800} fz="xl">
-          {formatPrice(subtotal)}
+          {formatPrice(total)}
         </Text>
       </Group>
 

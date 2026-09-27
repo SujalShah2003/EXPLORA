@@ -11,7 +11,7 @@
     "subtotal": "Subtotal",
     "items": "Items",
     "shipping": "Shipping",
-    "shippingValue": "Calculated at checkout",
+    "shippingCost": 5,
     "total": "Total",
     "checkout": "Checkout",
     "continueShopping": "Continue shopping"

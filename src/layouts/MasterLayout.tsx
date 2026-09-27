@@ -59,8 +59,8 @@ const MasterLayout = () => {
           <MobileHeader close={close} />
         </AppShell.Navbar>
 
-        <AppShell.Main>
-          <Container size="xl" py={48}>
+        <AppShell.Main display="flex" style={{ flexDirection: 'column' }}>
+          <Container size="xl" py={48} w="100%" flex={1}>
             <Outlet />
           </Container>
           <Footer />
