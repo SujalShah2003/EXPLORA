@@ -13,7 +13,7 @@ A web app for discovering and browsing products. It is built with React, TypeScr
 - **Redux Toolkit** + **RTK Query** for state and data fetching
 - **redux-persist** (encrypted) for persisted state
 - **React Router 7** for routing
-- **react-icons**, **dayjs**, **Embla Carousel**
+- **react-icons**, **dayjs**
 - **ESLint** + **Prettier**
 
 ## Getting started

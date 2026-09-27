@@ -4,7 +4,6 @@
   "description": "Review your items and check out when you're ready.",
   "itemCount": "{count} items",
   "each": "{price} each",
-  "remove": "Remove",
   "removeAriaLabel": "Remove {title} from cart",
   "clear": "Clear cart",
   "summary": {
