@@ -11,7 +11,7 @@ const Footer = () => (
       <Group justify="space-between" align="flex-start" gap="xl">
         <Stack gap="sm" maw={500}>
           <Box><Logo inverted /></Box>
-          <Text c="gray.5" size="sm" tt="capitalize">
+          <Text c="gray.5" size="sm" lh={1.6}>
             {footer.description}
           </Text>
         </Stack>
