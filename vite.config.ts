@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import path from 'path';
 import react from '@vitejs/plugin-react-swc';
@@ -20,5 +21,15 @@ export default defineConfig({
   },
   server: {
     port: 3000
+  },
+  test: {
+    environment: 'jsdom',
+    include: ['tests/**/*.test.{ts,tsx}'],
+    setupFiles: ['./tests/setup.ts'],
+    css: false,
+    env: {
+      VITE_API_BASE_URL: 'https://dummyjson.com',
+      VITE_PERSIST_SECRET: 'test-secret'
+    }
   }
 });

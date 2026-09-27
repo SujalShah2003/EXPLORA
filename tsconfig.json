@@ -45,6 +45,7 @@
   },
   "include": [
     "src",
+    "tests",
     "src/types/index.d.ts",
     "vite.config.ts",
     "postcss.config.js",

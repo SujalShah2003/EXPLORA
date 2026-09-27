@@ -24,7 +24,7 @@ type Response = ProductsResponse<ProductSummary>;
 
 const categoryUrl = (slug: string) => `/products/category/${encodeURIComponent(slug)}`;
 
-const product = apiService.injectEndpoints({
+export const product = apiService.injectEndpoints({
   endpoints: build => ({
     getLatestProducts: build.query<Response, LatestProductsArgs>({
       query: ({ modifiedAfter, limit }) => ({
