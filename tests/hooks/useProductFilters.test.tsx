@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { act, renderHook } from '@testing-library/react';
 import { MemoryRouter, useLocation } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
-import { useProductFilters } from '@/components/products/useProductFilters';
+import { useProductFilters } from '@/hooks/useProductFilters';
 
 const setup = (url = '/products') =>
   renderHook(() => ({ filters: useProductFilters(), location: useLocation() }), {

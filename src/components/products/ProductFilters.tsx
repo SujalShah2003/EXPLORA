@@ -15,7 +15,7 @@ import { FiRotateCcw, FiSearch } from 'react-icons/fi';
 import { CONTENT } from '@/constants';
 import { useGetCategoryListQuery } from '@services/category.service.ts';
 import { formatSlug } from '@utils/format.ts';
-import type { ProductFilters as Filters } from './useProductFilters';
+import type { ProductFilters as Filters } from '../../hooks/useProductFilters';
 
 const { filters: copy } = CONTENT.products;
 

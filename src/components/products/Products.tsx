@@ -6,7 +6,7 @@ import SectionError from '@/common/SectionError';
 import ProductCardSkeleton from '@/components/product/ProductCardSkeleton';
 import { CONTENT } from '@/constants';
 import { useGetProductsQuery } from '@services/product.service.ts';
-import { useProductFilters } from './useProductFilters';
+import { useProductFilters } from '../../hooks/useProductFilters';
 
 const ProductCard = lazy(() => import('@/components/product/ProductCard'));
 const ProductFilters = lazy(() => import('./ProductFilters'));
